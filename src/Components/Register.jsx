@@ -1,14 +1,28 @@
-import React from "react";
+import React, { useContext } from "react";
 import { Link } from "react-router-dom";
+import { AuthContext } from "../Providers/AuthProvider";
 
 const Register = () => {
+  const { createUser } = useContext(AuthContext);
+
   const handleLogin = (e) => {
     e.preventDefault();
     const email = e.target.email.value;
     const password = e.target.password.value;
     const name = e.target.name.value;
-    const phoneNumber = e.target.phoneNumber.value;
-    console.log(name, phoneNumber, email, password);
+    // const phoneNumber = e.target.phoneNumber.value;
+    console.log(name, email, password);
+
+    // create user
+    createUser(email, password)
+    .then(result => {
+      console.log(result.user)
+    })
+    .catch(error => {
+      console.log("Error: ", error.massage)
+    })
+
+
   };
 
   return (
@@ -43,7 +57,7 @@ const Register = () => {
                 required
               />
             </div>
-            <div className="form-control">
+            {/* <div className="form-control">
               <label className="label">
                 <span className="label-text">Phone Number</span>
               </label>
@@ -54,7 +68,7 @@ const Register = () => {
                 className="input input-bordered"
                 required
               />
-            </div>
+            </div> */}
             <div className="form-control">
               <label className="label">
                 <span className="label-text">Password</span>
@@ -72,7 +86,7 @@ const Register = () => {
             </div>
           </form>
           <p className="mx-5 my-4">
-            Already have and account!! Please {" "}
+            Already have and account!! Please{" "}
             <Link to="/login" className="underline font-bold">
               Login
             </Link>
