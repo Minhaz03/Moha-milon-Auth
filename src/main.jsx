@@ -11,6 +11,7 @@ import { ThemeProvider } from "@material-tailwind/react";
 import AuthProvider from "./Providers/AuthProvider.jsx";
 import Orders from "./Components/Orders.jsx";
 import PrivateRoutes from "./Routes/PrivateRoutes.jsx";
+import Profile from "./Components/Profile.jsx";
 
 const router = createBrowserRouter([
   {
@@ -32,6 +33,10 @@ const router = createBrowserRouter([
       {
         path: "orders",
         element: <PrivateRoutes><Orders></Orders></PrivateRoutes>
+      },
+      {
+        path: 'profile',
+        element: <PrivateRoutes><Profile></Profile></PrivateRoutes>
       }
     ],
   },
